@@ -11,7 +11,7 @@ namespace God_Machine
 {
 
 
-    public partial class WebForm1
+    public partial class Register
     {
 
         /// <summary>
@@ -103,5 +103,14 @@ namespace God_Machine
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblError;
+
+        /// <summary>
+        /// userGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView userGrid;
     }
 }
