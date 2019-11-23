@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="God_Machine.WebForm1" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="God_Machine.Register" %>
 
 <!DOCTYPE html>
 
@@ -44,7 +44,7 @@
             <span class="auto-style2">Create an Account</span></div>
         <table class="auto-style3">
             <tr>
-                <td class="auto-style6">Username</td>
+                <td class="auto-style6">Name</td>
                 <td class="auto-style7">
                     <asp:TextBox ID="hfname" runat="server"></asp:TextBox>
                 </td>
@@ -84,12 +84,24 @@
                     <asp:TextBox ID="hfphone" runat="server"></asp:TextBox>
                 </td>
                 <td>
-                    <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" style="height: 26px" Text="Submit" />
+                    <asp:Button ID="Button1" runat="server" OnClick="Button_Submit" style="height: 26px" Text="Submit" />
                 </td>
             </tr>
         </table>
         <asp:Label ID="lblSuccess" runat="server" Text="" ForeColor="Green"></asp:Label>
         <asp:Label ID="lblError" runat="server" Text="" ForeColor="Red"></asp:Label>
+        <br />
+        <br />
+        <asp:GridView ID="userGrid" runat="server" AutoGenerateColumns="false">
+            <Columns>
+                 <asp:BoundField DataField="P_email" HeaderText="KEY: E-mail" />
+                 <asp:BoundField DataField="P_name" HeaderText="Name" />
+                 <asp:BoundField DataField="P_password" HeaderText="Password" />
+                 <asp:BoundField DataField="P_city" HeaderText="City" />
+                 <asp:BoundField DataField="P_state" HeaderText="State" />
+                 <asp:BoundField DataField="P_phone" HeaderText="Phone" />
+            </Columns>
+        </asp:GridView>
     </form>
 </body>
 </html>
