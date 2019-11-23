@@ -12,7 +12,7 @@ namespace God_Machine
     public partial class WebForm1 : System.Web.UI.Page
     {
         string connectionString = "datasource=music-festival.cxauddipatom.us-east-1.rds.amazonaws.com;port=3306;database=Music_Festival_Database;user=admin;password=godmachine;";
-
+      
         protected void Page_Load(object sender, EventArgs e)
         {
 
