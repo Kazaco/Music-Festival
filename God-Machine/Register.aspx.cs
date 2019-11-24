@@ -9,16 +9,20 @@ using System.Data;
 
 namespace God_Machine
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class Register : System.Web.UI.Page
     {
         string connectionString = "datasource=music-festival.cxauddipatom.us-east-1.rds.amazonaws.com;port=3306;database=Music_Festival_Database;user=admin;password=godmachine;";
       
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if( !IsPostBack)
+            {
+                ShowRegisteredUsers();
+                Clear();
+            }
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void Button_Submit(object sender, EventArgs e)
         {
             try
             {
@@ -34,13 +38,16 @@ namespace God_Machine
                     sqlCmd.Parameters.AddWithValue("state", hfstate.Text.Trim());
                     sqlCmd.Parameters.AddWithValue("phone", hfphone.Text.Trim());
                     sqlCmd.ExecuteNonQuery();
+                    ShowRegisteredUsers();
                     Clear();
-
-                    lblSuccess.Text = "Success!";
                 }
+
+                lblSuccess.Text = "Success!";
+                lblError.Text = "";
             }
             catch (Exception ex)
             {
+                lblSuccess.Text = "";
                 lblError.Text = ex.Message;
             }
         }
@@ -49,6 +56,20 @@ namespace God_Machine
         {
             hfname.Text = hfemail.Text = hfpassword.Text = hfcity.Text = hfstate.Text = hfphone.Text = "";
             lblSuccess.Text = lblError.Text = "";
+        }
+
+        void ShowRegisteredUsers()
+        {
+            using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+            {
+                sqlCon.Open();
+                MySqlDataAdapter sqlData = new MySqlDataAdapter("ViewUsers", sqlCon);
+                sqlData.SelectCommand.CommandType = CommandType.StoredProcedure;
+                DataTable tdDB = new DataTable();
+                sqlData.Fill(tdDB);
+                userGrid.DataSource = tdDB;
+                userGrid.DataBind();
+            }
         }
     }
 }
