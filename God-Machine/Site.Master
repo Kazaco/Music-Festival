@@ -54,6 +54,8 @@
                             </div>
                     </a>
                 </div>
+                 <asp:Content ID="Content1" ContentPlaceHolderID="ShowLogin" runat="server">
+                <div runat="server" id="div2">
                  <div class="navbar-collapse collapse" >
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item dropdown">
@@ -64,23 +66,28 @@
                             </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown" style="width: 300px; padding:20px">
                                     <form class="dropdown-menu p-4">
-                                        <div class="form-group"    
-                                            <label for="emailDropdown"><b>Email address</b></label>
-                                            <input type="email" class="form-control" id="emailDropdown" placeholder="email@example.com">
+                                        <div class="form-group"   
+                                            <asp:Label ID="emailDropdown" runat="server" Text="<b>Email address</b>"></asp:Label>
+                                            <asp:TextBox ID="EmailText" runat="server" placeholder="example@gmail.com"></asp:TextBox>
                                         </div>
                                         <div class="form-group">
-                                            <label for="passDropdown">Password</label>
-                                            <input type="password" class="form-control" id="passDropdown" placeholder="Password">
+                                            <asp:Label ID="passDropdown" runat="server" Text="<b>Password</b>"></asp:Label>
+                                            <br />
+                                            <asp:TextBox ID="PassText" runat="server" placeholder="Password"></asp:TextBox>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Sign in</button>
+                                        <asp:Button ID="Button_Sign_In" runat="server" OnClick="Button_Click_SignIn" style="height: 26px" Text="Sign In" />
                                     </form>
                                         <div class="dropdown-divider"></div>
+                                        <asp:Label ID="lblSuccess" runat="server" Text="" ForeColor="Green"></asp:Label>
+                                        <asp:Label ID="lblError" runat="server" Text="" ForeColor="Red"></asp:Label>
                                         <br />
                                         <a class="dropdown-item" href="Register">New? Create an Account!</a>
                               </div>
                         </li>
                     </ul>
-                </div>
+                 </div>
+               </div>
+              </asp:Content>
             </div>
         </div>
         <div class="container-fluid body-content" style="background-color:black; padding-bottom: 0px;">
