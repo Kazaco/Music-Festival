@@ -49,16 +49,35 @@
 						<div class="logo-image" style="width:100px; height:60px; position:absolute;left:50%; top:0; margin-left:-50px">
 							<img src="Images/machine.jpg">
 						</div>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Regular link</a>
+                            </div>
                     </a>
                 </div>
-                <div class="navbar-collapse collapse" >
+                 <div class="navbar-collapse collapse" >
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-							<a runat="server" href="~/Register">
-								<div class="profile-image" style="width:80px; height:25px; position:relative; top:0; "> 
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="profile-image" style="width:80px; height:25px; position:relative; top:0; "> 
 									<img src="Images/profile.jpg" />
 								</div>
                             </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdown" style="width: 300px; padding:20px">
+                                    <form class="dropdown-menu p-4">
+                                        <div class="form-group"    
+                                            <label for="emailDropdown"><b>Email address</b></label>
+                                            <input type="email" class="form-control" id="emailDropdown" placeholder="email@example.com">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="passDropdown">Password</label>
+                                            <input type="password" class="form-control" id="passDropdown" placeholder="Password">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Sign in</button>
+                                    </form>
+                                        <div class="dropdown-divider"></div>
+                                        <br />
+                                        <a class="dropdown-item" href="Register">New? Create an Account!</a>
+                              </div>
                         </li>
                     </ul>
                 </div>
