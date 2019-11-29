@@ -12,6 +12,37 @@ namespace God_Machine
 		protected void Page_Load(object sender, EventArgs e)
 		{
 
-		}
-	}
+            //Get info from the user
+            if(Session["UserId"] != null)
+            {
+                Greeting.Text = "Hello: " + Session["UserId"].ToString();
+
+                //Get the users ID and put into a string
+                string sessionId = (string)Session["UserId"];
+                System.Diagnostics.Debug.WriteLine(sessionId);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }
+            else
+            {
+                Greeting.Text = "Session has not been created yet.";
+            }
+
+
+
+        }
+    }
 }

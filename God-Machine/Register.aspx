@@ -94,12 +94,12 @@
         <br />
         <asp:GridView ID="userGrid" runat="server" AutoGenerateColumns="false">
             <Columns>
-                 <asp:BoundField DataField="P_email" HeaderText="KEY: E-mail" />
-                 <asp:BoundField DataField="P_name" HeaderText="Name" />
-                 <asp:BoundField DataField="P_password" HeaderText="Password" />
-                 <asp:BoundField DataField="P_city" HeaderText="City" />
-                 <asp:BoundField DataField="P_state" HeaderText="State" />
-                 <asp:BoundField DataField="P_phone" HeaderText="Phone" />
+                 <asp:BoundField DataField="email" HeaderText="KEY: E-mail" />
+                 <asp:BoundField DataField="name" HeaderText="Name" />
+                 <asp:BoundField DataField="password" HeaderText="Password" />
+                 <asp:BoundField DataField="city" HeaderText="City" />
+                 <asp:BoundField DataField="state" HeaderText="State" />
+                 <asp:BoundField DataField="phone" HeaderText="Phone" />
             </Columns>
         </asp:GridView>
     </form>

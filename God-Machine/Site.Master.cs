@@ -28,27 +28,42 @@ namespace God_Machine
                     sqlCon.Open();
                     MySqlCommand sqlCmd = new MySqlCommand("CheckLogin", sqlCon);
                     sqlCmd.CommandType = CommandType.StoredProcedure;
-                    sqlCmd.Parameters.AddWithValue("email", EmailText.Text.Trim());
-                    sqlCmd.Parameters.AddWithValue("password", PassText.Text.Trim());
-                    var returnParameter = sqlCmd.Parameters.Add("@ReturnVal", MySqlDbType.Int32);
+                    sqlCmd.Parameters.AddWithValue("_email", EmailText.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("_password", PassText.Text.Trim());
+                    var returnParameter = sqlCmd.Parameters.Add("@ReturnVal", MySqlDbType.String);
                     returnParameter.Direction = ParameterDirection.ReturnValue;
                     sqlCmd.ExecuteNonQuery();
 
-                    //1 = found a match, 0 = no match (try again)
-                    int result = (int) returnParameter.Value;
+                    //System.Diagnostics.Debug.WriteLine(returnParameter.Value);
 
-                    if( result == 1)
-                    {
-                        lblSuccess.Text = "Success!";
-                        lblError.Text = "";
-                        Session["UserID"] = EmailText.Text;
-                        Response.Redirect("Default.aspx");
-                    }
-                    else
+                    //Item is not in the database (NULL returned)
+                    if( returnParameter.Value == DBNull.Value)
                     {
                         lblSuccess.Text = "";
                         EmailText.Text = PassText.Text = "";
                         lblError.Text = "Wrong email or password";
+                    }
+                    else
+                    {
+                        //Found a match, can cast value to string and compare
+                        string result = (string)returnParameter.Value;
+
+                        //Admin logging in
+                        if (result == "admin@gmail.com")
+                        {
+                            lblSuccess.Text = "Success!";
+                            lblError.Text = "";
+                            Session["UserID"] = result;
+                            Response.Redirect("Admin.aspx", false);
+                        }
+                        //Normal User
+                        else
+                        {
+                            lblSuccess.Text = "Success!";
+                            lblError.Text = "";
+                            Session["UserID"] = result;
+                            Response.Redirect("Scheduler.aspx", false);
+                        }
                     }
                 }
             }

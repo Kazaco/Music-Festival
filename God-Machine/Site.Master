@@ -54,7 +54,6 @@
                             </div>
                     </a>
                 </div>
-                 <asp:Content ID="Content1" ContentPlaceHolderID="ShowLogin" runat="server">
                 <div runat="server" id="div2">
                  <div class="navbar-collapse collapse" >
                     <ul class="nav navbar-nav navbar-right">
@@ -94,7 +93,7 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
-            <footer style="clear:both; color: white">
+            <footer style="clear:both; color: #ff69b4">
                 <p>&copy; <%: DateTime.Now.Year %> - GOD MACHINE</p>
             </footer>
         </div>
