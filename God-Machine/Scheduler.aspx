@@ -15,15 +15,17 @@
                     <td align="center" style="width: 10%" rowspan="6">&nbsp;</td>
                 </tr>
                 <tr style="color: #FFFFFF">
-                    <td style="width: 1009px; " rowspan="4">
-                        <asp:GridView ID="userGrid0" runat="server" AutoGenerateColumns="false">
+                    <td style="width: 1009px; vertical-align:top;" rowspan="4";  >
+                        <asp:GridView ID="myScheduleGrid" runat="server" AutoGenerateColumns="false" ValidateRequestMode="Enabled">
                             <Columns>
-                                <asp:BoundField DataField="email" HeaderText="KEY: E-mail" />
-                                <asp:BoundField DataField="name" HeaderText="Name" />
-                                <asp:BoundField DataField="password" HeaderText="Password" />
-                                <asp:BoundField DataField="city" HeaderText="City" />
-                                <asp:BoundField DataField="state" HeaderText="State" />
-                                <asp:BoundField DataField="phone" HeaderText="Phone" />
+                                <asp:BoundField DataField="user_email" HeaderText="Account" />
+                                <asp:BoundField DataField="festival_name" HeaderText="Festival Name" />
+                                <asp:BoundField DataField="festival_year" HeaderText="Year" />
+                                <asp:BoundField DataField="events_stage" HeaderText="Stage" />
+                                <asp:BoundField DataField="events_time_begin" HeaderText="Time Begin" />
+                                <asp:BoundField DataField="events_time_end" HeaderText="Time End" />
+                                <asp:BoundField DataField="events_date" HeaderText="Date" />
+                                <asp:BoundField DataField="bands_name" HeaderText="Band" />
                             </Columns>
                         </asp:GridView>
                     </td>
@@ -52,15 +54,20 @@
                     </td>
                 </tr>
                 <tr style="color: #FFFFFF">
-                    <td colspan="4" align="center">
-                        <asp:GridView ID="userGrid" runat="server" AutoGenerateColumns="false">
+                     <td style="vertical-align:top;" colspan="4" align="center" >
+                        <asp:GridView ID="schedGrid" runat="server" AutoGenerateColumns="false">
                             <Columns>
-                                <asp:BoundField DataField="email" HeaderText="KEY: E-mail" />
-                                <asp:BoundField DataField="name" HeaderText="Name" />
-                                <asp:BoundField DataField="password" HeaderText="Password" />
+                                <asp:BoundField DataField="name" HeaderText="Festival Name" />
+                                <asp:BoundField DataField="year" HeaderText="Year" />
                                 <asp:BoundField DataField="city" HeaderText="City" />
                                 <asp:BoundField DataField="state" HeaderText="State" />
-                                <asp:BoundField DataField="phone" HeaderText="Phone" />
+                                 <asp:BoundField DataField="venue" HeaderText="Venue" />
+                                <asp:BoundField DataField="date_begin" HeaderText="Festival Begin" />
+                                <asp:BoundField DataField="date_end" HeaderText="Festival End" />
+                                <asp:BoundField DataField="stage" HeaderText="Event Stage" />
+                                <asp:BoundField DataField="time_begin" HeaderText="Event Begin" />
+                                <asp:BoundField DataField="time_end" HeaderText="Event End" />
+                                <asp:BoundField DataField="bands_name" HeaderText="Band" />
                             </Columns>
                         </asp:GridView>
                     </td>

@@ -24,13 +24,13 @@ namespace God_Machine
         protected global::System.Web.UI.WebControls.Label Greeting;
 
         /// <summary>
-        /// userGrid0 control.
+        /// myScheduleGrid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView userGrid0;
+        protected global::System.Web.UI.WebControls.GridView myScheduleGrid;
 
         /// <summary>
         /// FestivalBox control.
@@ -78,13 +78,13 @@ namespace God_Machine
         protected global::System.Web.UI.WebControls.Button SearchButton;
 
         /// <summary>
-        /// userGrid control.
+        /// schedGrid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView userGrid;
+        protected global::System.Web.UI.WebControls.GridView schedGrid;
 
         /// <summary>
         /// TextMeButton control.
