@@ -21,27 +21,16 @@ namespace God_Machine
                 string sessionId = (string)Session["UserId"];
                 System.Diagnostics.Debug.WriteLine(sessionId);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             }
             else
             {
                 Greeting.Text = "Session has not been created yet.";
             }
 
+        }
 
+        void ResultsforSearchOnEventsandFestival()
+        {
 
         }
     }
