@@ -16,7 +16,11 @@ namespace God_Machine
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(!IsPostBack)
+            {
+                string sessionId = (string)Session["UserId"];
+                System.Diagnostics.Debug.WriteLine(sessionId);
+            }
         }
 
         protected void Button_Click_SignIn(object sender, EventArgs e)

@@ -24,6 +24,9 @@ namespace God_Machine
 
         protected void Button_Submit(object sender, EventArgs e)
         {
+            string sessionId = (string)Session["UserId"];
+            System.Diagnostics.Debug.WriteLine(sessionId);
+
             try
             {
                 using (MySqlConnection sqlCon = new MySqlConnection(connectionString))

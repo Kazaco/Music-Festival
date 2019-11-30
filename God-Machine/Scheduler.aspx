@@ -3,11 +3,10 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
         <div>
-
             <h1>
             <asp:Label ID="Greeting" runat="server" style="font-size: xx-large; color: #FFFFFF"></asp:Label>
 		    </h1>
-		    <table align="center" style="width: 100%; border-color: whie; background-color: #000000" border="2">
+		    <table align="center" style="width: 100%; border-color: white; background-color: #000000" border="2">
                 <tr style="color: #FFFFFF">
                     <td align="center" style="width: 40">My Itinerary:</td>
                     <td align="center" class="modal-lg" style="width: 10%" rowspan="6">&nbsp;</td>
@@ -26,6 +25,11 @@
                                 <asp:BoundField DataField="events_time_end" HeaderText="Time End" />
                                 <asp:BoundField DataField="events_date" HeaderText="Date" />
                                 <asp:BoundField DataField="bands_name" HeaderText="Band" />
+                                <asp:TemplateField ShowHeader="False">
+                                    <ItemTemplate>
+                                        <asp:Button ID="RemoveEvent" runat="server" style="background-color: #000000" Text="Remove" OnClick="RemoveEvent_Click" UseSubmitBehavior="false" CausesValidation = "false" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
                     </td>
@@ -50,7 +54,7 @@
                 </tr>
                 <tr style="color: #FFFFFF">
                     <td colspan="4" align="center">
-                        <asp:Button ID="SearchButton" runat="server" style="background-color: #000000" Text="Search" />
+                        <asp:Button ID="SearchButton" runat="server" style="background-color: #000000" Text="Search" OnClick="SearchButton_Click" UseSubmitBehavior="false" CausesValidation = "false"/>
                     </td>
                 </tr>
                 <tr style="color: #FFFFFF">
@@ -61,23 +65,28 @@
                                 <asp:BoundField DataField="year" HeaderText="Year" />
                                 <asp:BoundField DataField="city" HeaderText="City" />
                                 <asp:BoundField DataField="state" HeaderText="State" />
-                                 <asp:BoundField DataField="venue" HeaderText="Venue" />
+                                <asp:BoundField DataField="venue" HeaderText="Venue" />
                                 <asp:BoundField DataField="date_begin" HeaderText="Festival Begin" />
                                 <asp:BoundField DataField="date_end" HeaderText="Festival End" />
                                 <asp:BoundField DataField="stage" HeaderText="Event Stage" />
+                                <asp:BoundField DataField="date" HeaderText="Date" />
                                 <asp:BoundField DataField="time_begin" HeaderText="Event Begin" />
                                 <asp:BoundField DataField="time_end" HeaderText="Event End" />
                                 <asp:BoundField DataField="bands_name" HeaderText="Band" />
+                                <asp:TemplateField ShowHeader="False">
+                                    <ItemTemplate>
+                                        <asp:Button ID="AddEventButton" runat="server" style="background-color: #000000" Text="Add" OnClick="AddEvent" UseSubmitBehavior="false" CausesValidation = "false" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
                     </td>
                 </tr>
                 <tr style="color: #FFFFFF">
                     <td style="width: 1009px" class="text-center">
-                        <asp:Button ID="TextMeButton" runat="server" style="background-color: #000000" Text="Text me Schedule!" />
+                        <asp:Button ID="TextMeButton" runat="server" style="background-color: #000000" Text="Text me Schedule!" UseSubmitBehavior="false" CausesValidation = "false"/>
                     </td>
                     <td colspan="4" align="center">
-                        <asp:Button ID="AddItineraryButton" runat="server" style="background-color: #000000" Text="Add to my Itenerary!" />
                     </td>
                 </tr>
             </table>
