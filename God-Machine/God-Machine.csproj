@@ -163,6 +163,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Register.aspx" />
     <Content Include="Admin.aspx" />
+    <Content Include="TestScheduler.aspx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scheduler.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -254,6 +255,13 @@
     </Compile>
     <Compile Include="Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TestScheduler.aspx.cs">
+      <DependentUpon>TestScheduler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestScheduler.aspx.designer.cs">
+      <DependentUpon>TestScheduler.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

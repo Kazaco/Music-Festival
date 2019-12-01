@@ -7,17 +7,17 @@ using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 using System.Data;
 using System.Globalization;
-
+using System.Configuration;
+using Twilio;
 
 namespace God_Machine
 {
-    public partial class Scheduler : System.Web.UI.Page
+    public partial class WebForm1 : System.Web.UI.Page
     {
         string connectionString = "datasource=music-festival.cxauddipatom.us-east-1.rds.amazonaws.com;port=3306;database=Music_Festival_Database;user=admin;password=godmachine;";
-
-    protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 //Get info from the user
                 if (Session["UserId"] != null)
@@ -30,7 +30,6 @@ namespace God_Machine
 
                     ResultsforSearchOnEventsandFestival();
                     ViewMySchedule();
-                    Clear();
                 }
                 else
                 {
@@ -44,12 +43,6 @@ namespace God_Machine
 
             }
         }
-
-        void Clear()
-        {
-            //YearBox.Text = FestBox.Text = BandBox.Text = StateBox.Text = "";
-        }
-         
         void ResultsforSearchOnEventsandFestival()
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -61,12 +54,11 @@ namespace God_Machine
                 sqlData.Fill(tdDB);
                 schedGrid.DataSource = tdDB;
                 //schedGrid.PageSize = 8;
-               //schedGrid.AllowPaging = true;
+                //schedGrid.AllowPaging = true;
                 //schedGrid.PagerSettings.Visible = false;
                 schedGrid.DataBind();
             }
         }
-
         protected void ViewMySchedule()
         {
             try
@@ -90,7 +82,6 @@ namespace God_Machine
                 System.Diagnostics.Debug.WriteLine(ex);
             }
         }
-
         protected void AddEvent(object sender, EventArgs e)
         {
             string sessionId = (string)Session["UserId"];
@@ -183,6 +174,7 @@ namespace God_Machine
 
         protected void SearchButton_Click(object sender, EventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine(FestBox.Text.Trim());
             System.Diagnostics.Debug.WriteLine(YearBox.Text.Trim());
             System.Diagnostics.Debug.WriteLine(StateBox.Text.Trim());
             System.Diagnostics.Debug.WriteLine(BandBox.Text.Trim());
@@ -213,5 +205,16 @@ namespace God_Machine
                 System.Diagnostics.Debug.WriteLine(ex);
             }
         }
+
+        protected void SendMessage_OnClick(object sender, EventArgs e)
+        {
+            //string ACCOUNT_SID = ConfigurationManager.AppSettings["ACCOUNT_SID"];
+            //string AUTH_TOKEN = ConfigurationManager.AppSettings["AUTH_TOKEN"];
+
+            //TwilioRestClient client = new TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN);
+
+            //client.SendMessage("(502) 276-8990", ToNumber.Text, Message.Text);
+        }
+
     }
 }

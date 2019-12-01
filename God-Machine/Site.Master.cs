@@ -70,7 +70,7 @@ namespace God_Machine
                             lblSuccess.Text = "Success!";
                             lblError.Text = "";
                             Session["UserID"] = result;
-                            Response.Redirect("Scheduler.aspx", false);
+                            Response.Redirect("TestScheduler.aspx", false);
                         }
                     }
                 }

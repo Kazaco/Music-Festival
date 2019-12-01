@@ -48,13 +48,14 @@
                         <asp:TextBox ID="StateBox" EnableViewState=true runat="server" Text="" autopostback="false" style="background-color: #E46CA8"></asp:TextBox>
                     </td>
                     <td style="width: 459px" align="center">
-                        <asp:TextBox ID="BandBox" EnableViewState=true runat="server" Text="" autopostback="false" style="background-color: #E46CA8" ViewStateMode="Enabled"></asp:TextBox>
+                       <asp:TextBox ID="BandBox" EnableViewState=true runat="server" Text="" autopostback="false" style="background-color: #E46CA8" ViewStateMode="Enabled"></asp:TextBox>
                     </td>
                     </tr>
                 </div>
                 <tr style="color: #FFFFFF">
                     <td colspan="4" align="center">
                         <asp:Button ID="SearchButton" runat="server" style="background-color: #000000" Text="Search" OnClick="SearchButton_Click" UseSubmitBehavior="false" CausesValidation = "false" EnableViewState = true/>
+                        </div>
                     </td>
                 </tr>
                 <tr style="color: #FFFFFF">
