@@ -21,6 +21,10 @@ namespace God_Machine
                 string sessionId = (string)Session["UserId"];
                 System.Diagnostics.Debug.WriteLine(sessionId);
             }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("hello");
+            }
         }
 
         protected void Button_Click_SignIn(object sender, EventArgs e)

@@ -8,15 +8,16 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using System.Globalization;
 
+
 namespace God_Machine
 {
     public partial class Scheduler : System.Web.UI.Page
     {
         string connectionString = "datasource=music-festival.cxauddipatom.us-east-1.rds.amazonaws.com;port=3306;database=Music_Festival_Database;user=admin;password=godmachine;";
 
-        protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender, EventArgs e)
         {
-            if( !IsPostBack )
+            if(!IsPostBack)
             {
                 //Get info from the user
                 if (Session["UserId"] != null)
@@ -29,12 +30,24 @@ namespace God_Machine
 
                     ResultsforSearchOnEventsandFestival();
                     ViewMySchedule();
+                    Clear();
                 }
                 else
                 {
                     Greeting.Text = "Session has not been created yet.";
                 }
             }
+            else
+            {
+                string test = FestBox.Text;
+                System.Diagnostics.Debug.WriteLine(test);
+
+            }
+        }
+
+        void Clear()
+        {
+            YearBox.Text = FestBox.Text = BandBox.Text = StateBox.Text = "";
         }
          
         void ResultsforSearchOnEventsandFestival()
@@ -170,9 +183,35 @@ namespace God_Machine
 
         protected void SearchButton_Click(object sender, EventArgs e)
         {
-            string sessionId = (string)Session["UserId"];
-            Greeting.Text = "Hello: " + Session["UserId"].ToString() + "Wow";
-            System.Diagnostics.Debug.WriteLine(sessionId);
+            System.Diagnostics.Debug.WriteLine(YearBox.Text.Trim());
+            System.Diagnostics.Debug.WriteLine(StateBox.Text.Trim());
+            System.Diagnostics.Debug.WriteLine(BandBox.Text.Trim());
+            try
+            {
+                using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                {
+                    sqlCon.Open();
+                    MySqlCommand sqlCmd = new MySqlCommand("Search", sqlCon);
+                    sqlCmd.CommandType = CommandType.StoredProcedure;
+                    sqlCmd.Parameters.AddWithValue("_festival", FestBox.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("_year", YearBox.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("_state", StateBox.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("_band", BandBox.Text.Trim());
+                    sqlCmd.ExecuteNonQuery();
+                    MySqlDataAdapter sqlData = new MySqlDataAdapter(sqlCmd);
+                    DataTable tdDB = new DataTable();
+                    sqlData.Fill(tdDB);
+                    schedGrid.DataSource = tdDB;
+                    schedGrid.PageSize = 8;
+                    schedGrid.AllowPaging = true;
+                    schedGrid.PagerSettings.Visible = false;
+                    schedGrid.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+            }
         }
     }
 }

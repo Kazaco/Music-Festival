@@ -33,13 +33,13 @@ namespace God_Machine
         protected global::System.Web.UI.WebControls.GridView myScheduleGrid;
 
         /// <summary>
-        /// FestivalBox control.
+        /// FestBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox FestivalBox;
+        protected global::System.Web.UI.WebControls.TextBox FestBox;
 
         /// <summary>
         /// YearBox control.
