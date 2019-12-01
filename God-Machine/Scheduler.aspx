@@ -1,7 +1,5 @@
-﻿<%@ Page Title="Scheduler" Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="Scheduler.aspx.cs" Inherits="God_Machine.Scheduler" %>
-
+﻿<%@ Page Title="Scheduler" Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="Scheduler.aspx.cs" EnableViewState="true" Inherits="God_Machine.Scheduler" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
         <div>
             <h1>
             <asp:Label ID="Greeting" runat="server" style="font-size: xx-large; color: #FFFFFF"></asp:Label>
@@ -38,23 +36,25 @@
                     <td style="width: 162px; height: 20px" align="center">State:</td>
                     <td style="width: 162px; height: 20px" align="center">Band:</td>
                 </tr>
-                <tr style="color: #FFFFFF">
-                    <td style="width: 459px" align="center">
-                        <asp:TextBox ID="FestivalBox" runat="server"></asp:TextBox>
+                <div>
+                    <tr style="color: #FFFFFF">
+                    <td style="width: 459px" align="center" >
+                       <asp:TextBox ID="FestBox" EnableViewState=true runat="server" Text="" style="background-color: #E46CA8"></asp:TextBox>
                     </td>
                     <td style="width: 459px" align="center">
-                        <asp:TextBox ID="YearBox" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="YearBox" EnableViewState=true runat="server" Text="" style="background-color: #E46CA8"></asp:TextBox>
                     </td>
                     <td style="width: 459px" align="center">
-                        <asp:TextBox ID="StateBox" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="StateBox" EnableViewState=true runat="server" Text="" style="background-color: #E46CA8"></asp:TextBox>
                     </td>
                     <td style="width: 459px" align="center">
-                        <asp:TextBox ID="BandBox" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="BandBox" EnableViewState=true runat="server" Text="Cray" UseSubmitBehavior="false" style="background-color: #E46CA8"></asp:TextBox>
                     </td>
-                </tr>
+                    </tr>
+                </div>
                 <tr style="color: #FFFFFF">
                     <td colspan="4" align="center">
-                        <asp:Button ID="SearchButton" runat="server" style="background-color: #000000" Text="Search" OnClick="SearchButton_Click" UseSubmitBehavior="false" CausesValidation = "false"/>
+                        <asp:Button ID="SearchButton" runat="server" style="background-color: #000000" Text="Search" OnClick="SearchButton_Click" UseSubmitBehavior="false" CausesValidation = "false" EnableViewState = true/>
                     </td>
                 </tr>
                 <tr style="color: #FFFFFF">
