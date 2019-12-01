@@ -55,6 +55,61 @@ namespace God_Machine
             }
         }
 
+        protected void Button_Update(object sender, EventArgs e)
+        {
+            try
+            {
+                using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                {
+                    sqlCon.Open();
+                    MySqlCommand sqlCmd = new MySqlCommand("UpdateUser", sqlCon);
+                    sqlCmd.CommandType = CommandType.StoredProcedure;
+                    sqlCmd.Parameters.AddWithValue("_name", hfname.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("_email", hfemail.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("_password", hfpassword.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("_city", hfcity.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("_state", hfstate.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("_phone", hfphone.Text.Trim());
+                    sqlCmd.ExecuteNonQuery();
+                    ShowRegisteredUsers();
+                    Clear();
+                }
+
+                lblSuccess.Text = "Updated User Info!";
+                lblError.Text = "";
+            }
+            catch (Exception ex)
+            {
+                lblSuccess.Text = "";
+                lblError.Text = ex.Message;
+            }
+        }
+
+        protected void Button_Delete(object sender, EventArgs e)
+        {
+            try
+            {
+                using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                {
+                    sqlCon.Open();
+                    MySqlCommand sqlCmd = new MySqlCommand("DeleteUser", sqlCon);
+                    sqlCmd.CommandType = CommandType.StoredProcedure;
+                    sqlCmd.Parameters.AddWithValue("_email", hfemail.Text.Trim());
+                    sqlCmd.ExecuteNonQuery();
+                    ShowRegisteredUsers();
+                    Clear();
+                }
+
+                lblSuccess.Text = "Deleted User";
+                lblError.Text = "";
+            }
+            catch (Exception ex)
+            {
+                lblSuccess.Text = "";
+                lblError.Text = ex.Message;
+            }
+        }
+
         void Clear()
         {
             hfname.Text = hfemail.Text = hfpassword.Text = hfcity.Text = hfstate.Text = hfphone.Text = "";

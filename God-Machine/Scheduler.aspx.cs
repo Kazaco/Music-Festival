@@ -19,7 +19,6 @@ namespace God_Machine
         {
             if(!IsPostBack)
             {
-
                 //Get info from the user
                 if (Session["UserId"] != null)
                 {
@@ -31,9 +30,7 @@ namespace God_Machine
 
                     ResultsforSearchOnEventsandFestival();
                     ViewMySchedule();
-
-                    string test = FestBox.Text;
-                    System.Diagnostics.Debug.WriteLine(test);
+                    Clear();
                 }
                 else
                 {
@@ -46,6 +43,11 @@ namespace God_Machine
                 System.Diagnostics.Debug.WriteLine(test);
 
             }
+        }
+
+        void Clear()
+        {
+            YearBox.Text = FestBox.Text = BandBox.Text = StateBox.Text = "";
         }
          
         void ResultsforSearchOnEventsandFestival()

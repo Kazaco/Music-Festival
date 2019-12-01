@@ -35,57 +35,73 @@
         }
         .auto-style8 {
             height: 26px;
+            width: 68px;
+        }
+        .auto-style9 {
+            width: 68px;
+        }
+        .auto-style10 {
+            width: 68px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div class="auto-style1" style="height: 46px">
-            <span class="auto-style2">Create an Account</span></div>
+            <span class="auto-style2">Create/Modify an Account</span></div>
         <table class="auto-style3">
             <tr>
                 <td class="auto-style6">Name</td>
                 <td class="auto-style7">
                     <asp:TextBox ID="hfname" runat="server"></asp:TextBox>
                 </td>
-                <td class="auto-style8"></td>
+                <td class="auto-style8">&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style4">E-mail</td>
                 <td class="auto-style5">
                     <asp:TextBox ID="hfemail" runat="server"></asp:TextBox>
                 </td>
-                <td>&nbsp;</td>
+                <td class="auto-style10">&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style4">Password</td>
                 <td class="auto-style5">
                     <asp:TextBox ID="hfpassword" runat="server"></asp:TextBox>
                 </td>
-                <td>&nbsp;</td>
+                <td class="auto-style9">&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style4">City</td>
                 <td class="auto-style5">
                     <asp:TextBox ID="hfcity" runat="server"></asp:TextBox>
                 </td>
-                <td>&nbsp;</td>
+                <td class="auto-style10">
+                    <asp:Button ID="Button1" runat="server" OnClick="Button_Submit" style="height: 26px" Text="Submit" />
+                </td>
             </tr>
             <tr>
                 <td class="auto-style4">State</td>
                 <td class="auto-style5">
                     <asp:TextBox ID="hfstate" runat="server"></asp:TextBox>
                 </td>
-                <td>&nbsp;</td>
+                <td class="auto-style9">
+                    <asp:Button ID="Button2" runat="server" OnClick="Button_Update" style="height: 26px" Text="Update" />
+                </td>
             </tr>
             <tr>
                 <td class="auto-style4">Phone Number</td>
                 <td class="auto-style5">
                     <asp:TextBox ID="hfphone" runat="server"></asp:TextBox>
                 </td>
-                <td>
-                    <asp:Button ID="Button1" runat="server" OnClick="Button_Submit" style="height: 26px" Text="Submit" />
+                <td class="auto-style10">
+                    <asp:Button ID="Button3" runat="server" OnClick="Button_Delete" style="height: 26px" Text="Delete" />
                 </td>
+                <td>
+                    &nbsp;</td>
+                  <td>
+                      &nbsp;</td>
             </tr>
         </table>
         <asp:Label ID="lblSuccess" runat="server" Text="" ForeColor="Green"></asp:Label>

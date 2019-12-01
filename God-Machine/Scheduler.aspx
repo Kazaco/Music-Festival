@@ -42,13 +42,13 @@
                        <asp:TextBox ID="FestBox" EnableViewState=true runat="server" Text="" style="background-color: #E46CA8"></asp:TextBox>
                     </td>
                     <td style="width: 459px" align="center">
-                        <asp:TextBox ID="YearBox" EnableViewState=true runat="server" Text="" style="background-color: #E46CA8"></asp:TextBox>
+                        <asp:TextBox ID="YearBox" EnableViewState=true runat="server" Text="" autopostback="false" style="background-color: #E46CA8"></asp:TextBox>
                     </td>
                     <td style="width: 459px" align="center">
-                        <asp:TextBox ID="StateBox" EnableViewState=true runat="server" Text="" style="background-color: #E46CA8"></asp:TextBox>
+                        <asp:TextBox ID="StateBox" EnableViewState=true runat="server" Text="" autopostback="false" style="background-color: #E46CA8"></asp:TextBox>
                     </td>
                     <td style="width: 459px" align="center">
-                        <asp:TextBox ID="BandBox" EnableViewState=true runat="server" Text="Cray" UseSubmitBehavior="false" style="background-color: #E46CA8"></asp:TextBox>
+                        <asp:TextBox ID="BandBox" EnableViewState=true runat="server" Text="" autopostback="false" style="background-color: #E46CA8" ViewStateMode="Enabled"></asp:TextBox>
                     </td>
                     </tr>
                 </div>
