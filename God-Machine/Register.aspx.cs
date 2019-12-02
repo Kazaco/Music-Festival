@@ -129,5 +129,10 @@ namespace God_Machine
                 userGrid.DataBind();
             }
         }
+
+        protected void hfname_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

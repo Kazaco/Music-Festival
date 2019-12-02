@@ -47,7 +47,7 @@ namespace God_Machine
 
         void Clear()
         {
-            //YearBox.Text = FestBox.Text = BandBox.Text = StateBox.Text = "";
+            YearBox.Text = FestBox.Text = BandBox.Text = StateBox.Text = "";
         }
          
         void ResultsforSearchOnEventsandFestival()

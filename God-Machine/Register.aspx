@@ -75,28 +75,28 @@
             <tr>
                 <td class="auto-style6">Name</td>
                 <td class="auto-style7">
-                    <asp:TextBox ID="hfname" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="hfname" runat="server" ForeColor="Black" OnTextChanged="hfname_TextChanged"></asp:TextBox>
                 </td>
                 <td class="auto-style8">&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style4">E-mail</td>
                 <td class="auto-style5">
-                    <asp:TextBox ID="hfemail" runat="server" CssClass="auto-style11"></asp:TextBox>
+                    <asp:TextBox ID="hfemail" runat="server" ForeColor="Black"></asp:TextBox>
                 </td>
                 <td class="auto-style13">&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style4">Password</td>
                 <td class="auto-style5">
-                    <asp:TextBox ID="hfpassword" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="hfpassword" runat="server" ForeColor="Black"></asp:TextBox>
                 </td>
                 <td class="auto-style12">&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style4">City</td>
                 <td class="auto-style5">
-                    <asp:TextBox ID="hfcity" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="hfcity" runat="server" ForeColor="Black"></asp:TextBox>
                 </td>
                 <td class="auto-style10">
                     <asp:Button ID="Button1" runat="server" OnClick="Button_Submit" style="height: 26px" Text="Submit" CssClass="auto-style14" />
@@ -105,7 +105,7 @@
             <tr>
                 <td class="auto-style4">State</td>
                 <td class="auto-style5">
-                    <asp:TextBox ID="hfstate" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="hfstate" runat="server" ForeColor="Black"></asp:TextBox>
                 </td>
                 <td class="auto-style9">
                     <asp:Button ID="Button2" runat="server" OnClick="Button_Update" style="height: 26px" Text="Update" CssClass="auto-style14" />
@@ -114,7 +114,7 @@
             <tr>
                 <td class="auto-style4">Phone Number</td>
                 <td class="auto-style5">
-                    <asp:TextBox ID="hfphone" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="hfphone" runat="server" ForeColor="Black"></asp:TextBox>
                 </td>
                 <td class="auto-style10">
                     <asp:Button ID="Button3" runat="server" OnClick="Button_Delete" style="height: 26px" Text="Delete" CssClass="auto-style14" />

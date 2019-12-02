@@ -164,6 +164,7 @@
     <Content Include="Register.aspx" />
     <Content Include="Admin.aspx" />
     <Content Include="TestScheduler.aspx" />
+    <None Include="Properties\PublishProfiles\God-Machine20191201075528 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scheduler.aspx" />
     <Content Include="Scripts\bootstrap.js" />
