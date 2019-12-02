@@ -12,7 +12,8 @@
         }
         .auto-style2 {
             font-size: xx-large;
-            background-color: #FFFFFF;
+            background-color: #000000;
+            color: #FFFFFF;
         }
         .auto-style3 {
             width: 100%;
@@ -20,6 +21,7 @@
         .auto-style4 {
             width: 153px;
             text-align: right;
+            color: #FFFFFF;
         }
         .auto-style5 {
             width: 161px;
@@ -28,6 +30,7 @@
             width: 153px;
             text-align: right;
             height: 26px;
+            color: #FFFFFF;
         }
         .auto-style7 {
             width: 161px;
@@ -36,6 +39,7 @@
         .auto-style8 {
             height: 26px;
             width: 68px;
+            color: #FFFFFF;
         }
         .auto-style9 {
             width: 68px;
@@ -44,9 +48,26 @@
             width: 68px;
             text-align: center;
         }
+        .auto-style11 {
+            color: #FFFFFF;
+        }
+        .auto-style12 {
+            width: 68px;
+            color: #FFFFFF;
+        }
+        .auto-style13 {
+            width: 68px;
+            text-align: center;
+            color: #FFFFFF;
+        }
+        .auto-style14 {
+            color: #FFFFFF;
+            background-color: #000000;
+        }
     </style>
 </head>
-<body>
+<body bgcolor="black">
+    <asp:HyperLink ID="HyperLink1" runat="server" CssClass="auto-style3" NavigateUrl="Default.aspx">Return to Main</asp:HyperLink>
     <form id="form1" runat="server">
         <div class="auto-style1" style="height: 46px">
             <span class="auto-style2">Create/Modify an Account</span></div>
@@ -61,16 +82,16 @@
             <tr>
                 <td class="auto-style4">E-mail</td>
                 <td class="auto-style5">
-                    <asp:TextBox ID="hfemail" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="hfemail" runat="server" CssClass="auto-style11"></asp:TextBox>
                 </td>
-                <td class="auto-style10">&nbsp;</td>
+                <td class="auto-style13">&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style4">Password</td>
                 <td class="auto-style5">
                     <asp:TextBox ID="hfpassword" runat="server"></asp:TextBox>
                 </td>
-                <td class="auto-style9">&nbsp;</td>
+                <td class="auto-style12">&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style4">City</td>
@@ -78,7 +99,7 @@
                     <asp:TextBox ID="hfcity" runat="server"></asp:TextBox>
                 </td>
                 <td class="auto-style10">
-                    <asp:Button ID="Button1" runat="server" OnClick="Button_Submit" style="height: 26px" Text="Submit" />
+                    <asp:Button ID="Button1" runat="server" OnClick="Button_Submit" style="height: 26px" Text="Submit" CssClass="auto-style14" />
                 </td>
             </tr>
             <tr>
@@ -87,7 +108,7 @@
                     <asp:TextBox ID="hfstate" runat="server"></asp:TextBox>
                 </td>
                 <td class="auto-style9">
-                    <asp:Button ID="Button2" runat="server" OnClick="Button_Update" style="height: 26px" Text="Update" />
+                    <asp:Button ID="Button2" runat="server" OnClick="Button_Update" style="height: 26px" Text="Update" CssClass="auto-style14" />
                 </td>
             </tr>
             <tr>
@@ -96,7 +117,7 @@
                     <asp:TextBox ID="hfphone" runat="server"></asp:TextBox>
                 </td>
                 <td class="auto-style10">
-                    <asp:Button ID="Button3" runat="server" OnClick="Button_Delete" style="height: 26px" Text="Delete" />
+                    <asp:Button ID="Button3" runat="server" OnClick="Button_Delete" style="height: 26px" Text="Delete" CssClass="auto-style14" />
                 </td>
                 <td>
                     &nbsp;</td>
@@ -108,7 +129,7 @@
         <asp:Label ID="lblError" runat="server" Text="" ForeColor="Red"></asp:Label>
         <br />
         <br />
-        <asp:GridView ID="userGrid" runat="server" AutoGenerateColumns="false">
+        <asp:GridView ID="userGrid" runat="server" AutoGenerateColumns="false" CssClass="auto-style11">
             <Columns>
                  <asp:BoundField DataField="email" HeaderText="KEY: E-mail" />
                  <asp:BoundField DataField="name" HeaderText="Name" />
