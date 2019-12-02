@@ -104,7 +104,7 @@
             </tr>
             <tr style="color: #FFFFFF">
                 <td class="auto-style2" style="width: 1009px">
-                    <asp:Button ID="TextMeButton" runat="server" CausesValidation="false" CssClass="auto-style1" style="background-color: #000000" Text="Text me Schedule!" UseSubmitBehavior="false" />
+                    <asp:Button ID="TextMeButton" runat="server" CausesValidation="false" CssClass="auto-style1" OnClick="SendMessage_OnClick" style="background-color: #000000" Text="Text me Schedule!" />
                 </td>
                 <td align="center" colspan="4"></td>
             </tr>

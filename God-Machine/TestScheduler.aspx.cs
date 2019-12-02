@@ -9,6 +9,9 @@ using System.Data;
 using System.Globalization;
 using System.Configuration;
 using Twilio;
+using Twilio.Clients;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
 
 namespace God_Machine
 {
@@ -53,9 +56,6 @@ namespace God_Machine
                 DataTable tdDB = new DataTable();
                 sqlData.Fill(tdDB);
                 schedGrid.DataSource = tdDB;
-                //schedGrid.PageSize = 8;
-                //schedGrid.AllowPaging = true;
-                //schedGrid.PagerSettings.Visible = false;
                 schedGrid.DataBind();
             }
         }
@@ -192,11 +192,8 @@ namespace God_Machine
                     sqlCmd.ExecuteNonQuery();
                     MySqlDataAdapter sqlData = new MySqlDataAdapter(sqlCmd);
                     DataTable tdDB = new DataTable();
-                    sqlData.Fill(tdDB);
                     schedGrid.DataSource = tdDB;
-                    schedGrid.PageSize = 8;
-                    schedGrid.AllowPaging = true;
-                    schedGrid.PagerSettings.Visible = false;
+                    sqlData.Fill(tdDB);
                     schedGrid.DataBind();
                 }
             }
@@ -208,12 +205,58 @@ namespace God_Machine
 
         protected void SendMessage_OnClick(object sender, EventArgs e)
         {
-            //string ACCOUNT_SID = ConfigurationManager.AppSettings["ACCOUNT_SID"];
-            //string AUTH_TOKEN = ConfigurationManager.AppSettings["AUTH_TOKEN"];
 
-            //TwilioRestClient client = new TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN);
+            string sessionId = (string)Session["UserId"];
+            System.Diagnostics.Debug.WriteLine(sessionId);
 
-            //client.SendMessage("(502) 276-8990", ToNumber.Text, Message.Text);
+            try
+            {
+                using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                {
+                    sqlCon.Open();
+                    MySqlCommand sqlCmd = new MySqlCommand("GetPhone", sqlCon);
+                    sqlCmd.CommandType = CommandType.StoredProcedure;
+                    sqlCmd.Parameters.AddWithValue("_email", sessionId);
+                    var phone = sqlCmd.Parameters.Add("@ReturnVal", MySqlDbType.String);
+                    phone.Direction = ParameterDirection.ReturnValue;
+                    sqlCmd.ExecuteNonQuery();
+                    System.Diagnostics.Debug.WriteLine(phone.Value);
+                    string phoneNumber = (string)phone.Value;
+
+                    string festival = myScheduleGrid.Rows[0].Cells[1].Text;
+                    string stage = myScheduleGrid.Rows[0].Cells[3].Text;
+                    string time_begin = myScheduleGrid.Rows[0].Cells[4].Text;
+                    string time_end = myScheduleGrid.Rows[0].Cells[5].Text;
+                    string date = myScheduleGrid.Rows[0].Cells[6].Text;
+                    string band = myScheduleGrid.Rows[0].Cells[7].Text;
+
+                    string send = festival + " " + stage + " " + time_begin + " " + time_end + " " + date + " " + band;
+
+                    System.Diagnostics.Debug.WriteLine(festival);
+                    System.Diagnostics.Debug.WriteLine(stage);
+                    System.Diagnostics.Debug.WriteLine(time_begin);
+                    System.Diagnostics.Debug.WriteLine(time_end);
+                    System.Diagnostics.Debug.WriteLine(date);
+                    System.Diagnostics.Debug.WriteLine(band);
+
+                    string ACCOUNT_SID = "ACa579a7f0cc6b5d91c6ebb3c13f784589";
+                    string AUTH_TOKEN = "5659abddf1ac7bca0cf690e776b43832";
+
+                    TwilioClient.Init(ACCOUNT_SID, AUTH_TOKEN);
+
+                    var message = MessageResource.Create(
+                       body: send,
+                       from: new Twilio.Types.PhoneNumber("+12028318403"),
+                       to: new Twilio.Types.PhoneNumber("+1" + phoneNumber)
+                    );
+
+                    System.Diagnostics.Debug.WriteLine(message.Sid);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+            }
         }
 
     }
