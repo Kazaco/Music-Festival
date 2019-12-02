@@ -29,3 +29,19 @@ textarea {
         padding: 0;
     }
 }
+
+.bop {
+	color: black				!important;
+	background-color: #ff69b4	!important;
+}
+
+.pob {
+	color: #ff69b4				!important;
+	background-color: black 	!important;
+	border: none;
+}
+
+.profile-image:hover {
+	background-color: #f74097	!important;
+	outline: none	!important;
+}

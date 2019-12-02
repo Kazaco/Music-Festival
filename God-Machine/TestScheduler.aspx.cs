@@ -7,17 +7,20 @@ using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 using System.Data;
 using System.Globalization;
-
+using System.Configuration;
+using Twilio;
+using Twilio.Clients;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
 
 namespace God_Machine
 {
-    public partial class Scheduler : System.Web.UI.Page
+    public partial class WebForm1 : System.Web.UI.Page
     {
         string connectionString = "datasource=music-festival.cxauddipatom.us-east-1.rds.amazonaws.com;port=3306;database=Music_Festival_Database;user=admin;password=godmachine;";
-
-    protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 //Get info from the user
                 if (Session["UserId"] != null)
@@ -30,7 +33,6 @@ namespace God_Machine
 
                     ResultsforSearchOnEventsandFestival();
                     ViewMySchedule();
-                    Clear();
                 }
                 else
                 {
@@ -44,12 +46,6 @@ namespace God_Machine
 
             }
         }
-
-        void Clear()
-        {
-            //YearBox.Text = FestBox.Text = BandBox.Text = StateBox.Text = "";
-        }
-         
         void ResultsforSearchOnEventsandFestival()
         {
             using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
@@ -60,13 +56,9 @@ namespace God_Machine
                 DataTable tdDB = new DataTable();
                 sqlData.Fill(tdDB);
                 schedGrid.DataSource = tdDB;
-                //schedGrid.PageSize = 8;
-               //schedGrid.AllowPaging = true;
-                //schedGrid.PagerSettings.Visible = false;
                 schedGrid.DataBind();
             }
         }
-
         protected void ViewMySchedule()
         {
             try
@@ -90,7 +82,6 @@ namespace God_Machine
                 System.Diagnostics.Debug.WriteLine(ex);
             }
         }
-
         protected void AddEvent(object sender, EventArgs e)
         {
             string sessionId = (string)Session["UserId"];
@@ -183,6 +174,7 @@ namespace God_Machine
 
         protected void SearchButton_Click(object sender, EventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine(FestBox.Text.Trim());
             System.Diagnostics.Debug.WriteLine(YearBox.Text.Trim());
             System.Diagnostics.Debug.WriteLine(StateBox.Text.Trim());
             System.Diagnostics.Debug.WriteLine(BandBox.Text.Trim());
@@ -200,11 +192,8 @@ namespace God_Machine
                     sqlCmd.ExecuteNonQuery();
                     MySqlDataAdapter sqlData = new MySqlDataAdapter(sqlCmd);
                     DataTable tdDB = new DataTable();
-                    sqlData.Fill(tdDB);
                     schedGrid.DataSource = tdDB;
-                    schedGrid.PageSize = 8;
-                    schedGrid.AllowPaging = true;
-                    schedGrid.PagerSettings.Visible = false;
+                    sqlData.Fill(tdDB);
                     schedGrid.DataBind();
                 }
             }
@@ -213,5 +202,62 @@ namespace God_Machine
                 System.Diagnostics.Debug.WriteLine(ex);
             }
         }
+
+        protected void SendMessage_OnClick(object sender, EventArgs e)
+        {
+
+            string sessionId = (string)Session["UserId"];
+            System.Diagnostics.Debug.WriteLine(sessionId);
+
+            try
+            {
+                using (MySqlConnection sqlCon = new MySqlConnection(connectionString))
+                {
+                    sqlCon.Open();
+                    MySqlCommand sqlCmd = new MySqlCommand("GetPhone", sqlCon);
+                    sqlCmd.CommandType = CommandType.StoredProcedure;
+                    sqlCmd.Parameters.AddWithValue("_email", sessionId);
+                    var phone = sqlCmd.Parameters.Add("@ReturnVal", MySqlDbType.String);
+                    phone.Direction = ParameterDirection.ReturnValue;
+                    sqlCmd.ExecuteNonQuery();
+                    System.Diagnostics.Debug.WriteLine(phone.Value);
+                    string phoneNumber = (string)phone.Value;
+
+                    string festival = myScheduleGrid.Rows[0].Cells[1].Text;
+                    string stage = myScheduleGrid.Rows[0].Cells[3].Text;
+                    string time_begin = myScheduleGrid.Rows[0].Cells[4].Text;
+                    string time_end = myScheduleGrid.Rows[0].Cells[5].Text;
+                    string date = myScheduleGrid.Rows[0].Cells[6].Text;
+                    string band = myScheduleGrid.Rows[0].Cells[7].Text;
+
+                    string send = festival + " " + stage + " " + time_begin + " " + time_end + " " + date + " " + band;
+
+                    System.Diagnostics.Debug.WriteLine(festival);
+                    System.Diagnostics.Debug.WriteLine(stage);
+                    System.Diagnostics.Debug.WriteLine(time_begin);
+                    System.Diagnostics.Debug.WriteLine(time_end);
+                    System.Diagnostics.Debug.WriteLine(date);
+                    System.Diagnostics.Debug.WriteLine(band);
+
+                    string ACCOUNT_SID = "ACa579a7f0cc6b5d91c6ebb3c13f784589";
+                    string AUTH_TOKEN = "5659abddf1ac7bca0cf690e776b43832";
+
+                    TwilioClient.Init(ACCOUNT_SID, AUTH_TOKEN);
+
+                    var message = MessageResource.Create(
+                       body: send,
+                       from: new Twilio.Types.PhoneNumber("+12028318403"),
+                       to: new Twilio.Types.PhoneNumber("+1" + phoneNumber)
+                    );
+
+                    System.Diagnostics.Debug.WriteLine(message.Sid);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex);
+            }
+        }
+
     }
 }
